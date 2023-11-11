@@ -1,9 +1,12 @@
+package com.example;
+
+import java.io.File;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class AppConfig {
     private static final String CONFIG_FILE = "config.txt"; // 使用 .txt 文件擴展名
-    private static Properties properties;
+    private static final Properties properties;
 
     static {
         properties = new Properties();
