@@ -1,3 +1,4 @@
+package com.example;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -15,7 +16,7 @@ public class AppConfig {
     }
 
     public static String getApiKey() {
-        return properties.getProperty("api.key99999999");
+        return properties.getProperty("api.key");
     }
 
     public static String getApiSecret() {

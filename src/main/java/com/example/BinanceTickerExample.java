@@ -1,3 +1,4 @@
+package com.example;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.BufferedReader;
@@ -10,8 +11,6 @@ public class BinanceTickerExample {
     public static void main(String[] args) {
         try {
             // 印出 API 密鑰
-            System.out.println("API Key: " + AppConfig.getApiKey());
-            System.out.println("API Secret: " + AppConfig.getApiSecret());
 
             // 設置獲取行情的URL，這裡以ETH/USDT為例
             URL url = new URL("https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT");
