@@ -15,7 +15,7 @@ public class AppConfig {
     }
 
     public static String getApiKey() {
-        return properties.getProperty("api.key");
+        return properties.getProperty("api.key99999999");
     }
 
     public static String getApiSecret() {
