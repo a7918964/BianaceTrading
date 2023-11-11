@@ -29,6 +29,7 @@ public class BinanceTickerExample {
             connection.setRequestMethod("GET");
 
             int responseCode = connection.getResponseCode();
+            String symbol;
 
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -45,20 +46,33 @@ public class BinanceTickerExample {
                 JsonObject tickerJson = gson.fromJson(response.toString(), JsonObject.class);
 
                 // 提取價格信息
-                String symbol = tickerJson.get("symbol").getAsString();
+                symbol = tickerJson.get("symbol").getAsString();
                 double price = tickerJson.get("price").getAsDouble();
 
                 // 輸出價格信息
                 System.out.println("Symbol: " + symbol);
                 System.out.println("Price: " + price);
 
+
                 // 判斷條件，如果價格大於 2000，執行市價買入
                 if (price > 2000) {
-                    System.out.println("Executing market buy order!");
-
                     // 在此添加下單邏輯
+                    // 创建 Binance API 客户端
+                    BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance(AppConfig.getApiKey(), AppConfig.getApiSecret());
+                    BinanceApiRestClient client = factory.newRestClient();
+
+                    // 设置交易对和买入数量
+                    symbol = "ETHUSDT";  // 交易对
+                    String quantity = "1.0";   // 买入数量
+
+                    // 创建市价买入订单
+
+                    NewOrderResponse newOrderResponse = client.newOrder(NewOrder.marketBuy(symbol, quantity).recvWindow(5000L));
+                    System.out.println("New Order Response: " + newOrderResponse);
                     JsonObject orderResult = executeMarketBuyOrder("ETHUSDT", 1.0); // 1.0 是下單數量
                     handleOrderResult(orderResult);
+                    System.out.println("Executing market buy order!");
+
                 } else {
                     System.out.println("Price is not above 2000, no action taken.");
                 }
@@ -75,7 +89,6 @@ public class BinanceTickerExample {
         // 在這裡實現下單邏輯，向 Binance API 發送下單請求
         // 返回包含下單結果的 JSON 對象
         // 真實應用中，您需要使用 Binance API 實現下單邏輯
-        // 以下僅是一個示例，並不是實際可用的下單邏輯
         JsonObject orderResult = new JsonObject();
         orderResult.addProperty("symbol", symbol);
         orderResult.addProperty("orderId", 123456); // 假設下單成功，orderId 為下單的唯一標識

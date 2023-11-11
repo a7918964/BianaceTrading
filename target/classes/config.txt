@@ -1,0 +1,2 @@
+api.key= EZ82C7GZOhJzIuUhcFqZCbJ4aOgVWVkIzy10YnqHy2EoKe20gGWu6OXFJ8jK0ma0
+api.secret= HTiaaBjsgV5o31ICdgN8bgrWT6Vx6fF3zfpCCWgYkLCT3dmqVWrHI4FsUWi3rF7s
