@@ -217,6 +217,11 @@
             <artifactId>binance-api-client</artifactId>
             <version>2.17.1</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.binance</groupId>
+            <artifactId>binance-futures-connector-java</artifactId>
+            <version>3.0.3</version>
+        </dependency>
 
 
 
